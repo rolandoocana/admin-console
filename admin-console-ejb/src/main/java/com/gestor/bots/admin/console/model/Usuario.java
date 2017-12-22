@@ -14,6 +14,7 @@
 package com.gestor.bots.admin.console.model;
  
 import com.gestor.bots.admin.console.enums.EstadoUsuarioEnum;
+import com.gestor.bots.admin.console.enums.TipoUsuarioEnum;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
