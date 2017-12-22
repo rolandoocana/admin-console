@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * Gestor
+ * Sistema: CONSOLA ADMINISTRACION BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -24,9 +24,9 @@ import javax.persistence.ManyToOne
 import javax.persistence.Table;
 
 /**
- * ${CLASS_COMMENT}
+ * CLASE DE REDES SOCIALES
  *
- * @author ${AUTHOR}
+ * @author Gestor
  * @version 1.0
  */
 @Entity
@@ -43,19 +43,19 @@ public class BotSocialMedia implements Serializable {
     private BotSocialMediaPK pk = new BotSocialMediaPK();
     
 
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna USUARIO. 
      */
     @Column(name = "USUARIO" , nullable = false , length = 100)
     private String usuario;
     
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna NOMBRE. 
      */
     @Column(name = "NOMBRE" , nullable = false , length = 100)
     private String nombre;
     
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna URL. 
      */
     @Column(name = "URL" , nullable = false , length = 200)
@@ -229,7 +229,7 @@ public class BotSocialMedia implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[pk=" + pk + "]"; 
+        return "BotSocialMedia[pk=" + pk + "]"; 
     }     
 
 } 

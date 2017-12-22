@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * Gestor
+ * Sistema: CONSOLA ADMINISTRACION BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -20,7 +20,7 @@ import javax.persistence.Embedded;
 /**
  * La Clase BotSocialMediaPK representa a la clave primaria de la tabla BOT_SOCIAL_MEDIA.
  *
- * @author ${AUTHOR}
+ * @author Gestor
  * @version 1.0
  */
 @Embeddable
@@ -31,13 +31,13 @@ public class BotSocialMediaPK implements Serializable {
      */
     private static final long serialVersionUID = 944750260265083881L;
 
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna COD_SOCIAL_MEDIA. 
      */
     @Column(name = "COD_SOCIAL_MEDIA" , nullable = false , length = 15)
     private String codigoSocialMedia;
     
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna COD_BOT. 
      */
     @Column(name = "COD_BOT" , nullable = false , length = 10)
