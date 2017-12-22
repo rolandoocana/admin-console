@@ -18,6 +18,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Enumerated;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -47,33 +48,33 @@ public class Usuario implements Serializable {
     private String mail;
 
 
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna CLAVE. 
      */
     @Column(name = "CLAVE" , nullable = false , length = 100)
     private String clave;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna NOMBRE. 
      */
     @Column(name = "NOMBRE" , nullable = false , length = 100)
     private String nombre;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna FECHA_CRACION. 
      */
     @Temporal(TemporalType.DATE)
     @Column(name = "FECHA_CRACION" , nullable = false , length = 7)
     private Date fechaCreacion;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna ESTADO. 
      */
     @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO" , nullable = false , length = 3)
     private EstadoUsuarioEnum estado;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna TIPO. 
      */
     @Enumerated(EnumType.STRING)
@@ -238,7 +239,7 @@ public class Usuario implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[mail=" + mail + "]"; 
+        return "Usuario[mail=" + mail + "]"; 
     }     
 
 } 

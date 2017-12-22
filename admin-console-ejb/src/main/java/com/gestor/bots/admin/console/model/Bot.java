@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * GESTOR
+ * Sistema: CONSOLA ADMINISTRACION BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -29,7 +29,7 @@ import javax.persistence.Transient;
 /**
  * Entidad que registra la informaci\u00f3n especifica de cada Bot
  *
- * @author ${AUTHOR}
+ * @author Gestor
  * @version 1.0
  */
 @Entity
@@ -50,38 +50,38 @@ public class Bot implements Serializable {
     private String codigo;
 
 
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna RUC. 
      */
     @Column(name = "RUC" , nullable = false , length = 13)
     private String ruc;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna NOMBRE. 
      */
     @Column(name = "NOMBRE" , nullable = false , length = 100)
     private String nombre;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna AVATAR. 
      */
     @Column(name = "AVATAR" , nullable = false , length = 200)
     private String avatar;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna DESCRIPCION. 
      */
     @Column(name = "DESCRIPCION" , nullable = false , length = 500)
     private String descripcion;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna TIPO. 
      */
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO" , nullable = false , length = 3)
     private TipoBotEnum tipo;
     
-    /** ${COL_COMMENT}. 
+    /** 
      * Representa a la columna ESTADO. 
      */
     @Enumerated(EnumType.STRING)
@@ -353,7 +353,7 @@ public class Bot implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[codigo=" + codigo + "]"; 
+        return "Bot[codigo=" + codigo + "]"; 
     }     
 
 } 

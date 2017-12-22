@@ -15,7 +15,7 @@ package com.gestor.bots.admin.console.model;
  
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.Embeddable;
 
 /**
  * La Clase BotSocialMediaPK representa a la clave primaria de la tabla BOT_SOCIAL_MEDIA.

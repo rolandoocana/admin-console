@@ -15,9 +15,11 @@ package com.gestor.bots.admin.console.model;
  
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Enumerated;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -68,7 +70,7 @@ public class Regla implements Serializable {
     private Bot bot;
 
     /** Propiedad  entrenamientoReglas representa una relación de uno a muchos con la Entidad EntrenamientoRegla.*/;
-    @OneToMany(cascade=ALL, mappedBy="regla")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="regla")
     private List<EntrenamientoRegla> entrenamientoReglas;
     
 
@@ -247,7 +249,7 @@ public class Regla implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[codigo=" + codigo + "]"; 
+        return "Regla[codigo=" + codigo + "]"; 
     }     
 
 } 

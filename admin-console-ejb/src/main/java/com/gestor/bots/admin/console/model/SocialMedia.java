@@ -135,7 +135,7 @@ public class SocialMedia implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "Social Media[codigo=" + codigo + "]"; 
+        return "SocialMedia[codigo=" + codigo + "]"; 
     }     
 
 } 
