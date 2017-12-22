@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * GESTOR
+ * Sistema: CONSOLA ADMNISTRACION BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -20,9 +20,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * ${CLASS_COMMENT}
+ * Entidad que almacena las Redes Sociales 
  *
- * @author ${AUTHOR}
+ * @author GESTOR
  * @version 1.0
  */
 @Entity
@@ -43,7 +43,7 @@ public class SocialMedia implements Serializable {
     private String codigo;
 
 
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna NOMBRE. 
      */
     @Column(name = "NOMBRE" , nullable = false , length = 100)
@@ -135,7 +135,7 @@ public class SocialMedia implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[codigo=" + codigo + "]"; 
+        return "Social Media[codigo=" + codigo + "]"; 
     }     
 
 } 

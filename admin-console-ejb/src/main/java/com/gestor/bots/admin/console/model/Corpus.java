@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * GESTOR
+ * Sistema: CONSOLA ADMNISTRACION BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -19,13 +19,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * Entidad que almacena los datos de entrenamiento de cada regla
  *
- * @author ${AUTHOR}
+ * @author GESTOR
  * @version 1.0
  */
 @Entity
@@ -46,13 +46,13 @@ public class Corpus implements Serializable {
     private Integer id;
 
 
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna COD_REGLA. 
      */
     @Column(name = "COD_REGLA" , nullable = true , length = 16)
     private String codigoRegla;
     
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna TEXTO. 
      */
     @Column(name = "TEXTO" , nullable = false , length = 500)
@@ -185,7 +185,7 @@ public class Corpus implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[id=" + id + "]"; 
+        return "Corpus[id=" + id + "]"; 
     }     
 
 } 
