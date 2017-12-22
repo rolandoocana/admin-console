@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * GESTOR
+ * Sistema: CURSO_JEE
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -19,13 +19,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * 
  *
- * @author ${AUTHOR}
+ * @author Gestor
  * @version 1.0
  */
 @Entity
@@ -46,13 +46,13 @@ public class Sinonimo implements Serializable {
     private Integer secuencia;
 
 
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna COD_BOT. 
      */
     @Column(name = "COD_BOT" , nullable = true , length = 10)
     private String codigoBot;
     
-    /** ${COL_COMMENT}. 
+    /**  
      * Representa a la columna TERMINOS. 
      */
     @Column(name = "TERMINOS" , nullable = false , length = 500)
@@ -185,7 +185,7 @@ public class Sinonimo implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[secuencia=" + secuencia + "]"; 
+        return "Sinonimo[secuencia=" + secuencia + "]"; 
     }     
 
 } 
