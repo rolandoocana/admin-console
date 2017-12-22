@@ -13,6 +13,7 @@
  */
 package com.gestor.bots.admin.console.model;
  
+import com.gestor.bots.admin.console.enums.EstadoReglaEnum;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
