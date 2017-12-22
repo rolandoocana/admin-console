@@ -20,7 +20,7 @@ package com.gestor.bots.admin.console.enums;
  */
 public enum EstadoReglaEnum {
     DEF("Definido"),
-    /** Pregunta y Respuesta*/
+
     ACT("Activo"),
     
     INA("Inactivo");
