@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * GESTOR
+ * Sistema: CONSOLA BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -21,14 +21,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  * Entidad que almacena las reglas que puede atender el Bot
  *
- * @author ${AUTHOR}
+ * @author GESTOR
  * @version 1.0
  */
 @Entity
@@ -49,27 +49,15 @@ public class Regla implements Serializable {
     private String codigo;
 
 
-    /** ${COL_COMMENT}. 
-     * Representa a la columna COD_BOT. 
-     */
     @Column(name = "COD_BOT" , nullable = true , length = 10)
     private String codigoBot;
     
-    /** ${COL_COMMENT}. 
-     * Representa a la columna NOMBRE. 
-     */
     @Column(name = "NOMBRE" , nullable = false , length = 100)
     private String nombre;
     
-    /** ${COL_COMMENT}. 
-     * Representa a la columna CATEGORIA. 
-     */
     @Column(name = "CATEGORIA" , nullable = false , length = 32)
     private String categoria;
     
-    /** ${COL_COMMENT}. 
-     * Representa a la columna ESTADO. 
-     */
     @Enumerated(EnumType.STRING)
     @Column(name = "ESTADO" , nullable = false , length = 3)
     private EstadoReglaEnum estado;

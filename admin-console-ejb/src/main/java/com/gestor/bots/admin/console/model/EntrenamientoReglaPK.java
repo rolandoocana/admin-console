@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * GESTOR
+ * Sistema: CONSOLA BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -15,12 +15,12 @@ package com.gestor.bots.admin.console.model;
  
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.Embeddable;
 
 /**
  * La Clase EntrenamientoReglaPK representa a la clave primaria de la tabla ENTRENAMIENTO_REGLA.
  *
- * @author ${AUTHOR}
+ * @author GESTOR
  * @version 1.0
  */
 @Embeddable
@@ -31,15 +31,9 @@ public class EntrenamientoReglaPK implements Serializable {
      */
     private static final long serialVersionUID = 7921325202506445074L;
 
-    /** ${COL_COMMENT}. 
-     * Representa a la columna SEC_ENTRENAMIENTO. 
-     */
     @Column(name = "SEC_ENTRENAMIENTO" , nullable = false , length = 5)
     private Integer secuenciaEntrenamiento;
     
-    /** ${COL_COMMENT}. 
-     * Representa a la columna COD_REGLA. 
-     */
     @Column(name = "COD_REGLA" , nullable = false , length = 16)
     private String codigoRegla;
     

@@ -1,6 +1,6 @@
 /*
- * ${COMPANY}
- * Sistema: ${SYSTEM_NAME}
+ * GESTOR
+ * Sistema: CONSOLA BOT
  * Creado: 22-dic-2017 - 09:43:30
  * 
  * Los contenidos de este archivo son propiedad intelectual de Gestorinc S.A.
@@ -16,20 +16,19 @@ package com.gestor.bots.admin.console.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * ${CLASS_COMMENT}
+ * Clase de entrenamiento de la regla
  *
- * @author ${AUTHOR}
+ * @author GESTOR
  * @version 1.0
  */
 @Entity
@@ -46,29 +45,18 @@ public class EntrenamientoRegla implements Serializable {
     private EntrenamientoReglaPK pk = new EntrenamientoReglaPK();
     
 
-    /** ${COL_COMMENT}. 
-     * Representa a la columna FECHA_INICIO. 
-     */
     @Temporal(TemporalType.DATE)
     @Column(name = "FECHA_INICIO" , nullable = false , length = 7)
     private Date fechaInicio;
     
-    /** ${COL_COMMENT}. 
-     * Representa a la columna FECHA_FIN. 
-     */
     @Temporal(TemporalType.DATE)
     @Column(name = "FECHA_FIN" , nullable = true , length = 7)
     private Date fechaFin;
     
-    /** ${COL_COMMENT}. 
-     * Representa a la columna LINEAS_ENTRENAMIENTO. 
-     */
+
     @Column(name = "LINEAS_ENTRENAMIENTO" , nullable = false , length = 5)
     private Integer lineasEntrenamiento;
     
-    /** ${COL_COMMENT}. 
-     * Representa a la columna ESTADO. 
-     */
     @Column(name = "ESTADO" , nullable = false , length = 3)
     private String estado;
     
