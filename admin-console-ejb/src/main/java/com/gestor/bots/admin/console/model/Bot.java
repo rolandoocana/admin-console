@@ -13,6 +13,7 @@
  */
 package com.gestor.bots.admin.console.model;
  
+import com.gestor.bots.admin.console.enums.EstadoBotEnum;
 import com.gestor.bots.admin.console.enums.TipoBotEnum;
 import java.io.Serializable;
 import java.util.List;
