@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
  */
 @LocalBean
 @Stateless
-public class SinonimoDAO extends DefaultGenericDAOImple<Sinonimo, String> {
+public class SinonimoDAO extends DefaultGenericDAOImple<Sinonimo, Integer> {
     
     public SinonimoDAO() {
         super(Sinonimo.class);
