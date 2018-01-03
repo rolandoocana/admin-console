@@ -5,9 +5,8 @@
  */
 package com.gestor.bots.admin.console.dao;
 
-
-import com.gestor.bots.admin.console.model.BotSocialMedia;
-import com.gestor.bots.admin.console.model.BotSocialMediaPK;
+import com.gestor.bots.admin.console.model.EntrenamientoRegla;
+import com.gestor.bots.admin.console.model.EntrenamientoReglaPK;
 import com.persist.common.dao.DefaultGenericDAOImple;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -18,9 +17,10 @@ import javax.ejb.Stateless;
  */
 @LocalBean
 @Stateless
-public class BotSocialMediaDAO extends DefaultGenericDAOImple<BotSocialMedia, BotSocialMediaPK> {
+public class EntrenamientoReglaDAO extends DefaultGenericDAOImple<EntrenamientoRegla, EntrenamientoReglaPK> {
     
-    public BotSocialMediaDAO() {
-        super(BotSocialMedia.class);
+    public EntrenamientoReglaDAO() {
+        super(EntrenamientoRegla.class);
     }
+    
 }
