@@ -16,8 +16,9 @@ import javax.ejb.Stateless;
  */
 @LocalBean
 @Stateless
-public class UsuarioDAO extends DefaultGenericDAOImple<Usuario, String>{
-    public UsuarioDAO(){
-    super(Usuario.class);
-}
+public class UsuarioDAO extends DefaultGenericDAOImple<Usuario, String> {
+
+    public UsuarioDAO() {
+        super(Usuario.class);
+    }
 }
