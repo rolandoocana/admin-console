@@ -5,7 +5,7 @@
  */
 package com.gestor.bots.admin.console.dao;
 
-import com.gestor.bots.admin.console.model.Bot;
+import com.gestor.bots.admin.console.model.Sinonimo;
 import com.persist.common.dao.DefaultGenericDAOImple;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -16,9 +16,9 @@ import javax.ejb.Stateless;
  */
 @LocalBean
 @Stateless
-public class BotDAO extends DefaultGenericDAOImple<Bot, String> {
+public class SinonimoDAO extends DefaultGenericDAOImple<Sinonimo, String> {
     
-    public BotDAO() {
-        super(Bot.class);
+    public SinonimoDAO() {
+        super(Sinonimo.class);
     }
 }

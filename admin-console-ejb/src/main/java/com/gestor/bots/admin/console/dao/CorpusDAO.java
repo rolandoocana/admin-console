@@ -5,20 +5,20 @@
  */
 package com.gestor.bots.admin.console.dao;
 
-import com.gestor.bots.admin.console.model.Bot;
+import com.gestor.bots.admin.console.model.Corpus;
 import com.persist.common.dao.DefaultGenericDAOImple;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 /**
  *
- * @author Gestor
+ * @author Gestor_1
  */
 @LocalBean
 @Stateless
-public class BotDAO extends DefaultGenericDAOImple<Bot, String> {
-    
-    public BotDAO() {
-        super(Bot.class);
-    }
+public class CorpusDAO extends DefaultGenericDAOImple<Corpus, String>{
+     
+    public CorpusDAO() {
+        super(Corpus.class);
+    } 
 }
