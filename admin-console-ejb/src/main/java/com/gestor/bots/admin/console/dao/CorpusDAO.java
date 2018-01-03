@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
  */
 @LocalBean
 @Stateless
-public class CorpusDAO extends DefaultGenericDAOImple<Corpus, String>{
+public class CorpusDAO extends DefaultGenericDAOImple<Corpus, Integer>{
      
     public CorpusDAO() {
         super(Corpus.class);
