@@ -9,26 +9,19 @@ package com.gestor.bots.exception;
  *
  * @author David
  */
-public class EliminacionException extends RuntimeException {
-        private String codigo;
-
-    public String getCodigo() {
-        return codigo;
-    }
+public class EliminacionException extends CRUDException {
 
     public EliminacionException(String codigo) {
-        this.codigo = codigo;
+        super(codigo);
     }
 
     public EliminacionException(String codigo, String message) {
-        super(message);
-        this.codigo = codigo;
+        super(codigo, message);
     }
 
     public EliminacionException(String codigo, String message, Throwable cause) {
-        super(message, cause);
-        this.codigo = codigo;
+        super(codigo, message, cause);
     }
-    
+
     
 }

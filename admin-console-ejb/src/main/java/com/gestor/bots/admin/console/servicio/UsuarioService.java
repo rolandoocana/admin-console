@@ -38,7 +38,7 @@ public class UsuarioService {
         }
     }
     
-    public void Modificar(Usuario usuario)  {
+    public void modificar(Usuario usuario)  {
         try {
             this.usuarioDAO.update(usuario);
         } catch (Exception e) {

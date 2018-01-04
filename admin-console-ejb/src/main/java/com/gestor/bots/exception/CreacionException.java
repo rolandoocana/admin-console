@@ -9,29 +9,18 @@ package com.gestor.bots.exception;
  *
  * @author David
  */
-public class CreacionException extends RuntimeException{
-
-    private String codigo;
-
-    public String getCodigo() {
-        return codigo;
-    }
+public class CreacionException extends CRUDException {
 
     public CreacionException(String codigo) {
-        this.codigo = codigo;
+        super(codigo);
     }
 
     public CreacionException(String codigo, String message) {
-        super(message);
-        this.codigo = codigo;
+        super(codigo, message);
     }
 
     public CreacionException(String codigo, String message, Throwable cause) {
-        super(message, cause);
-        this.codigo = codigo;
+        super(codigo, message, cause);
     }
 
-
-    
-    
 }

@@ -9,27 +9,20 @@ package com.gestor.bots.exception;
  *
  * @author David
  */
-public class ModificacionException extends RuntimeException {
-    
-        private String codigo;
-
-    public String getCodigo() {
-        return codigo;
-    }
+public class ModificacionException extends CRUDException {
 
     public ModificacionException(String codigo) {
-        this.codigo = codigo;
+        super(codigo);
     }
 
     public ModificacionException(String codigo, String message) {
-        super(message);
-        this.codigo = codigo;
+        super(codigo, message);
     }
 
     public ModificacionException(String codigo, String message, Throwable cause) {
-        super(message, cause);
-        this.codigo = codigo;
+        super(codigo, message, cause);
     }
+
     
-    
+
 }
