@@ -7,7 +7,9 @@ package com.gestor.bots.admin.console.servicio;
 
 import com.gestor.bots.admin.console.dao.SocialMediaDAO;
 import com.gestor.bots.admin.console.model.SocialMedia;
-import com.gestor.bots.admin.exception.CreacionException;
+import com.gestor.bots.exception.CreacionException;
+import com.gestor.bots.exception.EliminacionException;
+import com.gestor.bots.exception.ModificacionException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
