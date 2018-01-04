@@ -17,6 +17,7 @@ import javax.ejb.Stateless;
 @LocalBean
 @Stateless
 public class ReglaDAO extends DefaultGenericDAOImple<Regla, String> {
+    
     public ReglaDAO() {
         super(Regla.class);
     }
