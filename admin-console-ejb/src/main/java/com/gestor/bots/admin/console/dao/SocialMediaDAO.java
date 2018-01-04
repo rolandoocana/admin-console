@@ -16,8 +16,11 @@ import javax.ejb.Stateless;
  */
 @LocalBean
 @Stateless
-public class SocialMediaDAO extends DefaultGenericDAOImple<SocialMedia, String>{
+public class SocialMediaDAO extends DefaultGenericDAOImple<SocialMedia, String> {
+
     public SocialMediaDAO() {
         super(SocialMedia.class);
     }
+    
+    
 }
