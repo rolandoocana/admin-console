@@ -31,11 +31,10 @@ public class SocialMediaService {
     }
     
     public void crear(SocialMedia socialMedia)  {
-        try {
+        
+            System.out.println("Antes de crear");
             this.socialMediaDAO.insert(socialMedia);
-        } catch (Exception e) {
-            throw new CreacionException("ERR100", e.getMessage() ,e);
-        }
+        
     }
     
     public void modificar(SocialMedia socialMedia){
