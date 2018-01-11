@@ -29,7 +29,7 @@ import org.apache.commons.beanutils.BeanUtils;
 @ViewScoped
 public class UsuarioBean extends BaseBean implements Serializable  {
 
-    private static final String ENTIDAD = "Red Social";
+    private static final String ENTIDAD = "Usuario";
     
     @Inject
     private UsuarioService usuarioService;
@@ -49,8 +49,8 @@ public class UsuarioBean extends BaseBean implements Serializable  {
         this.usuario = new Usuario();
         this.usuario.setEstado(EstadoUsuarioEnum.ACT);
         this.usuario.setTipo(TipoUsuarioEnum.INT);
-        java.util.Date fecha = new Date();
-        this.usuario.setFechaCreacion(fecha);
+        /*java.util.Date fecha = new Date();
+        this.usuario.setFechaCreacion(fecha);*/
     }
 
     @Override
@@ -76,18 +76,18 @@ public class UsuarioBean extends BaseBean implements Serializable  {
         if (super.isEnModificar()) {
             try {
                 this.usuarioService.modificar(usuario);
-                FacesUtil.addMessageInfo("Se modifico la red social: " + this.usuario.getNombre());
+                FacesUtil.addMessageInfo("Se modifico el usuario: " + this.usuario.getNombre());
                 super.cancelar();
             } catch (Exception e) {
-                FacesUtil.addMessageError(null, "Ocurrio un error al modificar la red social: "+this.usuario);
+                FacesUtil.addMessageError(null, "Ocurrio un error al modificar el usuario: "+this.usuario);
             }
         } else {
             try {
                 this.usuarioService.crear(usuario);
-                FacesUtil.addMessageInfo("Se creo la red social: " + this.usuario.getNombre());
+                FacesUtil.addMessageInfo("Se creo el usuario: " + this.usuario.getNombre());
                 super.cancelar();
             } catch (Exception e) {
-                FacesUtil.addMessageError(null, "No se pudo crear la red social: "+this.usuario);
+                FacesUtil.addMessageError(null, "No se pudo crear el usuario: "+this.usuario);
             }
         }
        this.usuarioList = this.usuarioService.obtenerTodos(); 

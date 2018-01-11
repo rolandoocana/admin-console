@@ -6,61 +6,63 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-        <ui:composition template="/templates/plantilla.xhtml">
-            <ui:define name="contenido">
-                <p:panel header="Administracion de Usuarios" >
-                    <p:dataTable value="#{usuarioBean.usuarioList}" var="usuario"
-                                 rows="5" paginator="true" paginatorPosition="bottom" selectionMode="single"
-                                 selection="#{usuarioBean.usuarioSel}" rowKey="#{usuario.mail}">
-                        <p:ajax event="rowSelect" update="@form" />
-                        <p:ajax event="rowUnselect" update="@form" />
-                        <f:facet name="header">
-                            Listado de Redes Sociales
-                        </f:facet>
-                        <p:column headerText="Mail usuario" sortBy="#{usuario.mail}">
-                            #{usuario.mail}
-                        </p:column>
-                        <p:column headerText="Nombre" >
-                            #{usuario.nombre}
-                        </p:column>
-                        <p:column headerText="Fecha Creacion" >
-                            #{usuario.fechaCreacion}
-                        </p:column>
-                        <p:column headerText="Estado" >
-                            #{usuario.estado}
-                        </p:column>
-                        <p:column headerText="Tipo" >
-                            #{usuario.tipo}
-                        </p:column>
-                        <f:facet name="footer">
-                            Registros Totales: #{usuarioBean.usuarioList.size()}
-                        </f:facet>
-                    </p:dataTable>
-                    <p:spacer height="10px"/>
-                    <p:commandButton value="Nuevo" actionListener="#{usuarioBean.nuevo()}" update="@form"/>
-                    <p:commandButton value="Modificar" actionListener="#{usuarioBean.modificar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null}"/>
-                    <p:commandButton value="Eliminar" disabled="#{usuarioBean.usuarioSel == null}"/>
-                    <p:commandButton value="Detalles" actionListener="#{usuarioBean.consultar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null}"/>
-                    <p:spacer height="10px"/>
-                    <p:panel header="#{usuarioBean.tituloPanel}" rendered="#{usuarioBean.enNuevo or usuarioBean.enModificar or usuarioBean.enConsulta}">
-                        <p:panelGrid columns="3">
-                            <p:outputLabel for="mail" value="Mail usuario" />
-                            <p:inputText id="mail" value="#{usuarioBean.usuario.mail}" required="true" disabled="#{usuarioBean.enModificar or usuarioBean.enConsulta}"/>
-                            <p:message for="mail" />
-                            <p:outputLabel for="nombre" value="Nombre" />
-                            <p:inputText id="nombre" value="#{usuarioBean.usuario.nombre}" required="true" readonly ="#{usuarioBean.enConsulta}" />
-                            <p:message for="nombre" />
-                            <p:outputLabel for="clave" value="Clave" />
-                            <p:inputText id="clave" value="#{usuarioBean.usuario.clave}" required="true" readonly ="#{usuarioBean.enConsulta}" />
-                            <p:message for="clave" />
-                            
-                        </p:panelGrid>
-                        <p:spacer height="5px"/>
-                        <p:commandButton value="Aceptar" actionListener="#{usuarioBean.guardar()}" update="@form" rendered="#{not usuarioBean.enConsulta}" />
-                        <p:commandButton value="Cancelar" actionListener="#{usuarioBean.cancelar()}" update="@form" immediate="true"/>
-                    </p:panel>
-                    <p:messages globalOnly="true" showSummary="true" showDetail="true"  />
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel header="Administracion de Usuarios" >
+                <p:dataTable value="#{usuarioBean.usuarioList}" var="usuario"
+                             rows="5" paginator="true" paginatorPosition="bottom" selectionMode="single"
+                             selection="#{usuarioBean.usuarioSel}" rowKey="#{usuario.mail}">
+                    <p:ajax event="rowSelect" update="@form" />
+                    <p:ajax event="rowUnselect" update="@form" />
+                    <f:facet name="header">
+                        Listado de Usuarios
+                    </f:facet>
+                    <p:column headerText="Mail usuario" sortBy="#{usuario.mail}">
+                        #{usuario.mail}
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        #{usuario.nombre}
+                    </p:column>
+                    <p:column headerText="Fecha Creacion" >
+                        #{usuario.fechaCreacion}
+                    </p:column>
+                    <p:column headerText="Estado" >
+                        #{usuario.estado}
+                    </p:column>
+                    <p:column headerText="Tipo" >
+                        #{usuario.tipo}
+                    </p:column>
+                    <f:facet name="footer">
+                        Registros Totales: #{usuarioBean.usuarioList.size()}
+                    </f:facet>
+                </p:dataTable>
+                <p:spacer height="10px"/>
+                <p:commandButton value="Nuevo" actionListener="#{usuarioBean.nuevo()}" update="@form"/>
+                <p:commandButton value="Modificar" actionListener="#{usuarioBean.modificar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null}"/>
+                <p:commandButton value="Eliminar" disabled="#{usuarioBean.usuarioSel == null}"/>
+                <p:commandButton value="Detalles" actionListener="#{usuarioBean.consultar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null}"/>
+                <p:spacer height="10px"/>
+                <p:panel header="#{usuarioBean.tituloPanel}" rendered="#{usuarioBean.enNuevo or usuarioBean.enModificar or usuarioBean.enConsulta}">
+                    <p:panelGrid columns="3">
+                        <p:outputLabel for="mail" value="Mail usuario" />
+                        <p:inputText id="mail" value="#{usuarioBean.usuario.mail}" required="true" disabled="#{usuarioBean.enModificar or usuarioBean.enConsulta}"/>
+                        <p:message for="mail" />
+                        <p:outputLabel for="nombre" value="Nombre" />
+                        <p:inputText id="nombre" value="#{usuarioBean.usuario.nombre}" required="true" readonly ="#{usuarioBean.enConsulta}" />
+                        <p:message for="nombre" />
+                        <p:outputLabel for="clave" value="Clave" />
+                        <p:password id="clave" value="#{usuarioBean.usuario.clave}" required="true" readonly ="#{usuarioBean.enConsulta}" />
+                        <p:message for="clave" />
+                        <p:outputLabel for="fecha" value="Fecha Creacion" />
+                        <p:calendar id="fecha" value="#{usuarioBean.usuario.fechaCreacion}" required="true" readonly ="#{usuarioBean.enConsulta}" />
+                        <p:message for="fecha" />
+                    </p:panelGrid>
+                    <p:spacer height="5px"/>
+                    <p:commandButton value="Aceptar" actionListener="#{usuarioBean.guardar()}" update="@form" rendered="#{not usuarioBean.enConsulta}" />
+                    <p:commandButton value="Cancelar" actionListener="#{usuarioBean.cancelar()}" update="@form" immediate="true"/>
                 </p:panel>
-            </ui:define>
-        </ui:composition>
+                <p:messages globalOnly="true" showSummary="true" showDetail="true"  />
+            </p:panel>
+        </ui:define>
+    </ui:composition>
 </html>
