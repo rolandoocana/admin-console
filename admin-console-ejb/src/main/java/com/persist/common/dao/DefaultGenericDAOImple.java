@@ -157,6 +157,7 @@ public class DefaultGenericDAOImple<T, ID extends Serializable> implements
     @Override
     public void insert(T entity) {
         getEntityManager().persist(entity);
+        getEntityManager().flush();
     }
 
     /**

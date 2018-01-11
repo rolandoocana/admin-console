@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.gestor.bots.admin.console.web;
 
 import com.gestor.bots.admin.console.model.SocialMedia;
 import com.gestor.bots.admin.console.servicio.SocialMediaService;
 import com.gestor.bots.admin.console.web.common.BaseBean;
-import com.gestor.bots.exception.CreacionException;
-import com.gestor.bots.exception.ModificacionException;
+import com.gestor.bots.admin.console.web.common.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,6 +21,8 @@ import org.apache.commons.beanutils.BeanUtils;
 @ViewScoped
 public class SocialMediaBean extends BaseBean implements Serializable {
 
+    private static final String ENTIDAD = "Red Social";
+    
     @Inject
     private SocialMediaService socialMediaService;
 
@@ -35,7 +30,7 @@ public class SocialMediaBean extends BaseBean implements Serializable {
 
     private SocialMedia socialMedia;
     private SocialMedia socialMediaSel;
-
+    
     @PostConstruct
     public void init() {
         this.socialMediaList = this.socialMediaService.obtenerTodos();
@@ -54,7 +49,7 @@ public class SocialMediaBean extends BaseBean implements Serializable {
         try {
             BeanUtils.copyProperties(this.socialMedia, this.socialMediaSel);
         } catch (Exception ex) {
-
+            FacesUtil.addMessageError(null, "No se puede modificar la "+ENTIDAD);
         }
     }
 
@@ -65,16 +60,23 @@ public class SocialMediaBean extends BaseBean implements Serializable {
     }
 
     public void guardar() {
-        
-            if (super.isEnModificar()) {
+        if (super.isEnModificar()) {
+            try {
                 this.socialMediaService.modificar(socialMedia);
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificacion", "Se modifico la red social: " + this.socialMedia.getNombre());
-                FacesContext.getCurrentInstance().addMessage(null, msg);
-            } else {
-                this.socialMediaService.crear(socialMedia);
-                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Creacion", "Se creo la red social: " + this.socialMedia.getNombre());
-                FacesContext.getCurrentInstance().addMessage(null, msg);
+                FacesUtil.addMessageInfo("Se modifico la red social: " + this.socialMedia.getNombre());
+                super.cancelar();
+            } catch (Exception e) {
+                FacesUtil.addMessageError(null, "Ocurrio un error al modificar la red social: "+this.socialMedia);
             }
+        } else {
+            try {
+                this.socialMediaService.crear(socialMedia);
+                FacesUtil.addMessageInfo("Se creo la red social: " + this.socialMedia.getNombre());
+                super.cancelar();
+            } catch (Exception e) {
+                FacesUtil.addMessageError(null, "No se pudo crear la red social: "+this.socialMedia);
+            }
+        }
         
     }
 
@@ -96,6 +98,10 @@ public class SocialMediaBean extends BaseBean implements Serializable {
 
     public void setSocialMediaSel(SocialMedia socialMediaSel) {
         this.socialMediaSel = socialMediaSel;
+    }
+    
+    public String getTituloPanel() {
+        return super.tituloPanel+SocialMediaBean.ENTIDAD;
     }
 
 }

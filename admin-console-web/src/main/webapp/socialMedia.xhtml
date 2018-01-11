@@ -33,13 +33,13 @@
                     <p:commandButton value="Eliminar" disabled="#{socialMediaBean.socialMediaSel == null}"/>
                     <p:commandButton value="Detalles" actionListener="#{socialMediaBean.consultar()}" update="@form" disabled="#{socialMediaBean.socialMediaSel == null}"/>
                     <p:spacer height="10px"/>
-                    <p:panel header="Registro de Redes Sociales" rendered="#{socialMediaBean.enNuevo or socialMediaBean.enModificar or socialMediaBean.enConsulta}">
+                    <p:panel header="#{socialMediaBean.tituloPanel}" rendered="#{socialMediaBean.enNuevo or socialMediaBean.enModificar or socialMediaBean.enConsulta}">
                         <p:panelGrid columns="3">
                             <p:outputLabel for="codigo" value="Codigo" />
                             <p:inputText id="codigo" value="#{socialMediaBean.socialMedia.codigo}" required="true" disabled="#{socialMediaBean.enModificar or socialMediaBean.enConsulta}"/>
                             <p:message for="codigo" />
                             <p:outputLabel for="nombre" value="Nombre" />
-                            <p:inputText id="nombre" value="#{socialMediaBean.socialMedia.nombre}" required="true" disabled="#{socialMediaBean.enConsulta}"/>
+                            <p:inputText id="nombre" value="#{socialMediaBean.socialMedia.nombre}" required="true" readonly ="#{socialMediaBean.enConsulta}" />
                             <p:message for="nombre" />
                         </p:panelGrid>
                         <p:spacer height="5px"/>

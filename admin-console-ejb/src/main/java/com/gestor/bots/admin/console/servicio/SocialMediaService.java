@@ -14,6 +14,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 /**
  *
@@ -30,11 +32,12 @@ public class SocialMediaService {
         return this.socialMediaDAO.findAll();
     }
     
-    public void crear(SocialMedia socialMedia)  {
-        
-            System.out.println("Antes de crear");
+    public void crear(SocialMedia socialMedia) throws CreacionException {
+        try {
             this.socialMediaDAO.insert(socialMedia);
-        
+        } catch (Exception e) {
+            throw new CreacionException("ERR100", "Error al crear: "+e.getMessage(), e);
+        } 
     }
     
     public void modificar(SocialMedia socialMedia){

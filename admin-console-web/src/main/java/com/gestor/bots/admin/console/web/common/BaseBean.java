@@ -17,18 +17,22 @@ public class BaseBean<T>implements Serializable {
     private boolean enModificar;
     private boolean enConsulta;
     
+    protected String tituloPanel;
+
     
     public void nuevo() {
         this.enNuevo = true;
-        
+        this.tituloPanel = "Registro de ";
     }
     
     public void modificar() {
         this.enModificar = true;
+        this.tituloPanel = "Modificacion de ";
     }
     
     public void consultar() {
         this.enConsulta = true;
+        this.tituloPanel = "Consulta Datos de ";
     }
     
     public void cancelar() {
