@@ -259,7 +259,7 @@ public class Cliente implements Serializable {
      */ 
     @Override 
     public String toString() { 
-        return "${CLASS_PK_TS}[ruc=" + ruc + "]"; 
+        return "Cliente[ruc=" + ruc + "]"; 
     }     
 
 } 
