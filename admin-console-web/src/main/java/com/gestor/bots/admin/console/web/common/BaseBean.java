@@ -18,6 +18,9 @@ public class BaseBean<T>implements Serializable {
     private boolean enConsulta;
     
     protected String tituloPanel;
+    
+    private String tipoFiltro;
+    private String filtro;
 
     
     public void nuevo() {
@@ -53,7 +56,23 @@ public class BaseBean<T>implements Serializable {
         return enConsulta;
     }
 
+    public boolean isEnFormulario() {
+        return (this.enNuevo || this.enModificar || this.enConsulta);
+    }
+    
+    public String getTipoFiltro() {
+        return tipoFiltro;
+    }
 
-    
-    
+    public void setTipoFiltro(String tipoFiltro) {
+        this.tipoFiltro = tipoFiltro;
+    }
+
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }
 }

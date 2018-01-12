@@ -9,9 +9,26 @@
     <ui:composition template="/templates/plantilla.xhtml">
         <ui:define name="contenido">
             <p:panel header="Administracion de Usuarios" >
+                <p:panel id="busquedaPnl" header="Busqueda de Usuarios">
+                    <p:panelGrid columns="4">
+                        <p:outputLabel for="filtro" value="Filtro:" />
+                        <p:selectOneMenu id="tipoFiltro" value="#{usuarioBean.tipoFiltro}" >
+                            <p:ajax update="busquedaPnl" />
+                            <f:selectItem itemLabel="Nombre" itemValue="NOM" />
+                            <f:selectItem itemLabel="Estado" itemValue="EST" />
+                        </p:selectOneMenu>
+                        <p:inputText id="filtro" value="#{usuarioBean.filtro}" rendered="#{'NOM' eq usuarioBean.tipoFiltro}" />
+                        <p:selectOneMenu id="filtro1" value="#{usuarioBean.filtro}" rendered="#{'EST' eq usuarioBean.tipoFiltro}" >
+                            <f:selectItems value="#{usuarioBean.valoresEstadoUsuario}" var="estado" itemLabel="#{estado.etiqueta}" itemValue="#{estado.name()}" />
+                        </p:selectOneMenu>
+                        <p:commandButton value="Buscar" actionListener="#{usuarioBean.buscar()}" update="@form" />
+                    </p:panelGrid>
+                </p:panel>
+                <p:spacer height="10px" />
                 <p:dataTable value="#{usuarioBean.usuarioList}" var="usuario"
                              rows="5" paginator="true" paginatorPosition="bottom" selectionMode="single"
-                             selection="#{usuarioBean.usuarioSel}" rowKey="#{usuario.mail}">
+                             emptyMessage="No hay registros para desplegar"
+                             selection="#{usuarioBean.usuarioSel}" rowKey="#{usuario.mail}" disabledSelection="#{usuarioBean.enFormulario}">
                     <p:ajax event="rowSelect" update="@form" />
                     <p:ajax event="rowUnselect" update="@form" />
                     <f:facet name="header">
@@ -20,42 +37,53 @@
                     <p:column headerText="Mail usuario" sortBy="#{usuario.mail}">
                         #{usuario.mail}
                     </p:column>
-                    <p:column headerText="Nombre" >
+                    <p:column headerText="Nombre" sortBy="#{usuario.nombre}">
                         #{usuario.nombre}
                     </p:column>
-                    <p:column headerText="Fecha Creacion" >
-                        #{usuario.fechaCreacion}
+                    <p:column headerText="Fecha Creacion" sortBy="#{usuario.fechaCreacion}">
+                        <h:outputText   value="#{usuario.fechaCreacion}" >                      
+                            <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+                        </h:outputText>
                     </p:column>
-                    <p:column headerText="Estado" >
-                        #{usuario.estado}
+                    <p:column headerText="Estado" sortBy="#{usuario.estado.etiqueta}">
+                        #{usuario.estado.etiqueta}
                     </p:column>
-                    <p:column headerText="Tipo" >
-                        #{usuario.tipo}
+                    <p:column headerText="Tipo" sortBy="#{usuario.tipo.etiqueta}">
+                        #{usuario.tipo.etiqueta}
                     </p:column>
                     <f:facet name="footer">
                         Registros Totales: #{usuarioBean.usuarioList.size()}
                     </f:facet>
                 </p:dataTable>
                 <p:spacer height="10px"/>
-                <p:commandButton value="Nuevo" actionListener="#{usuarioBean.nuevo()}" update="@form"/>
-                <p:commandButton value="Modificar" actionListener="#{usuarioBean.modificar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null}"/>
+                <p:commandButton value="Nuevo" actionListener="#{usuarioBean.nuevo()}" update="@form" disabled="#{usuarioBean.enFormulario}"/>
+                <p:commandButton value="Modificar" actionListener="#{usuarioBean.modificar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null || usuarioBean.enFormulario}"/>
                 <p:commandButton value="Eliminar" disabled="#{usuarioBean.usuarioSel == null}"/>
-                <p:commandButton value="Detalles" actionListener="#{usuarioBean.consultar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null}"/>
+                <p:commandButton value="Detalles" actionListener="#{usuarioBean.consultar()}" update="@form" disabled="#{usuarioBean.usuarioSel == null || usuarioBean.enFormulario}"/>
                 <p:spacer height="10px"/>
-                <p:panel header="#{usuarioBean.tituloPanel}" rendered="#{usuarioBean.enNuevo or usuarioBean.enModificar or usuarioBean.enConsulta}">
+                <p:panel header="#{usuarioBean.tituloPanel}" rendered="#{usuarioBean.enFormulario}">
                     <p:panelGrid columns="3">
                         <p:outputLabel for="mail" value="Mail usuario" />
-                        <p:inputText id="mail" value="#{usuarioBean.usuario.mail}" required="true" disabled="#{usuarioBean.enModificar or usuarioBean.enConsulta}"/>
+                        <p:inputText id="mail" value="#{usuarioBean.usuario.mail}" required="true" 
+                                     validatorMessage="El mail de usuario no tiene un formato valido."
+                                     disabled="#{usuarioBean.enModificar or usuarioBean.enConsulta}">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                        </p:inputText>
                         <p:message for="mail" />
                         <p:outputLabel for="nombre" value="Nombre" />
                         <p:inputText id="nombre" value="#{usuarioBean.usuario.nombre}" required="true" readonly ="#{usuarioBean.enConsulta}" />
                         <p:message for="nombre" />
                         <p:outputLabel for="clave" value="Clave" />
-                        <p:password id="clave" value="#{usuarioBean.usuario.clave}" required="true" readonly ="#{usuarioBean.enConsulta}" />
+                        <p:password id="clave" value="#{usuarioBean.usuario.clave}" required="true" readonly ="#{usuarioBean.enConsulta}" >
+
+                        </p:password>
                         <p:message for="clave" />
-                        <p:outputLabel for="fecha" value="Fecha Creacion" />
-                        <p:calendar id="fecha" value="#{usuarioBean.usuario.fechaCreacion}" required="true" readonly ="#{usuarioBean.enConsulta}" />
-                        <p:message for="fecha" />
+                        <p:outputLabel for="tipo" value="Tipo Usuario" />
+                        <p:selectOneListbox value="#{usuarioBean.usuario.tipo}" id="tipo">
+                            <f:selectItem itemValue="INT" itemLabel="Interno" />
+                            <f:selectItem itemValue="EXT" itemLabel="Externo" />
+                        </p:selectOneListbox>
+                        <p:message for="tipo" />
                     </p:panelGrid>
                     <p:spacer height="5px"/>
                     <p:commandButton value="Aceptar" actionListener="#{usuarioBean.guardar()}" update="@form" rendered="#{not usuarioBean.enConsulta}" />

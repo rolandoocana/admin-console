@@ -35,4 +35,6 @@ public enum EstadoUsuarioEnum {
     public String getEtiqueta() {
         return etiqueta;
     }
+   
+    
 }

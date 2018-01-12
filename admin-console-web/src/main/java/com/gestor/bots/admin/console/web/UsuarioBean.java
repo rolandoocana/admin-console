@@ -6,13 +6,11 @@
 package com.gestor.bots.admin.console.web;
 
 import com.gestor.bots.admin.console.enums.EstadoUsuarioEnum;
-import com.gestor.bots.admin.console.enums.TipoUsuarioEnum;
 import com.gestor.bots.admin.console.model.Usuario;
 import com.gestor.bots.admin.console.servicio.UsuarioService;
 import com.gestor.bots.admin.console.web.common.BaseBean;
 import com.gestor.bots.admin.console.web.common.FacesUtil;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -37,20 +35,22 @@ public class UsuarioBean extends BaseBean implements Serializable  {
 
     private Usuario usuario;
     private Usuario usuarioSel;
+    
+    
         
     @PostConstruct
     public void init() {
-        this.usuarioList = this.usuarioService.obtenerTodos();
+        super.setTipoFiltro("NOM");
+    }
+    
+    public void buscar() {
+        this.usuarioList = this.usuarioService.buscar(super.getTipoFiltro(), super.getFiltro());
     }
     
      @Override
     public void nuevo() {
         super.nuevo();
         this.usuario = new Usuario();
-        this.usuario.setEstado(EstadoUsuarioEnum.ACT);
-        this.usuario.setTipo(TipoUsuarioEnum.INT);
-        /*java.util.Date fecha = new Date();
-        this.usuario.setFechaCreacion(fecha);*/
     }
 
     @Override
@@ -117,5 +117,11 @@ public class UsuarioBean extends BaseBean implements Serializable  {
     public String getTituloPanel() {
         return super.tituloPanel+UsuarioBean.ENTIDAD;
     }
+
+    public EstadoUsuarioEnum[] getValoresEstadoUsuario() {
+        return EstadoUsuarioEnum.values();
+    }
+    
+    
 
 }

@@ -390,7 +390,7 @@ public class QueryBuilder<T> {
                 if (value.getClass().toString().startsWith("class java.sql")) {
                     continue;
                 } else if (value.getClass().toString().startsWith("class java.lang")
-                        || value.getClass().getName().contains(".Enum")) {
+                        || value.getClass().getName().contains("Enum")) {
                     if (value.toString().indexOf('%') >= 0) {
                         like.put(key, value);
                     } else if (value.toString().length() > 0) {
