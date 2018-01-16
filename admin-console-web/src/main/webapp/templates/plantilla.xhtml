@@ -3,6 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       >
@@ -13,9 +14,33 @@
     </h:head>
     <h:body> 
         <div id="page">
+            
             <div class="header">
                 <img src="#{facesContext.externalContext.requestContextPath}/images/banner.png" height="100%" class="img-responsive" />
             </div>
+            <h:form>
+            <p:menubar >
+                <p:submenu label="Catalogos" icon="fa-pagelines">
+                    <p:menuitem value="Redes Sociales" action="socialMedia" icon="fa-wechat"/>
+                </p:submenu>
+                <p:submenu label="Usuarios" icon="fa-users">
+                    <p:menuitem value="Usuarios" action="usuario" icon="fa-user"/>
+                </p:submenu>
+                <p:submenu label="Clientes" icon="fa-suitcase">
+                    <p:menuitem value="Clientes" action="cliente" icon="fa-user-plus"/>
+                </p:submenu>
+                <p:submenu label="Bots" icon="fa-android">
+                    <p:menuitem value="Bots" action="bots" icon="fa-cube"/>
+                    <p:menuitem value="Reglas" action="index" icon="fa-cogs"/>
+                </p:submenu>
+                <f:facet name="options">
+                    <p:menuButton value="Henry Coral" icon="fa-user-md">
+                        <p:menuitem value="Preferencias" url="#" icon="fa-cog"/>
+                        <p:menuitem value="Salir" url="#" icon="fa-sign-out"/>
+                    </p:menuButton>
+                </f:facet>
+            </p:menubar>
+            </h:form>    
             <div id="content">
                 <h:form>
                     <ui:insert name="contenido">
@@ -26,7 +51,7 @@
             </div>
             <div id="footer">
                 <div class="text-center center-block">
-                    
+
                 </div>
                 <div class="text-center center-block">
                     <p class="txt-railway">Copyright © Gestor 2018</p>
