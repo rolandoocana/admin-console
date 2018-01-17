@@ -7,17 +7,16 @@ package com.gestor.bots.admin.console.servicio;
 
 import com.gestor.bots.admin.console.dao.UsuarioDAO;
 import com.gestor.bots.admin.console.enums.EstadoUsuarioEnum;
-import com.gestor.bots.admin.console.enums.TipoUsuarioEnum;
 import com.gestor.bots.admin.console.model.Usuario;
 import com.gestor.bots.exception.CreacionException;
 import com.gestor.bots.exception.EliminacionException;
 import com.gestor.bots.exception.ModificacionException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -50,6 +49,8 @@ public class UsuarioService {
         try {
             usuario.setFechaCreacion(new Date());
             usuario.setEstado(EstadoUsuarioEnum.ACT);
+            String claveEnc = DigestUtils.sha256Hex(usuario.getClave());
+            usuario.setClave(claveEnc);
             this.usuarioDAO.insert(usuario);
         } catch (Exception e) {
             throw new CreacionException("ERR100", e.getMessage() ,e);
