@@ -34,8 +34,8 @@ import javax.persistence.TemporalType;
 public class RegistroLogin implements Serializable{
     
      @Id
-    @Column(name = "ID", nullable = false, length = 8)
-     private Integer id;
+    @Column(name = "SEC_LOG", nullable = false, length = 8)
+     private Integer secLog;
      
     
     @Column(name = "USERNAME" , nullable = false , length = 50)
@@ -52,16 +52,16 @@ public class RegistroLogin implements Serializable{
     public RegistroLogin() {
     }
 
-    public RegistroLogin(Integer id) {
-        this.id = id;
+    public RegistroLogin(Integer secLog) {
+        this.secLog = secLog;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getSecLog() {
+        return secLog;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSecLog(Integer secLog) {
+        this.secLog = secLog;
     }
 
     public String getUsername() {
@@ -89,14 +89,9 @@ public class RegistroLogin implements Serializable{
     }
 
     @Override
-    public String toString() {
-        return "RegistroLogin{" + "id=" + id + '}';
-    }
-
-    @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.secLog);
         return hash;
     }
 
@@ -112,11 +107,16 @@ public class RegistroLogin implements Serializable{
             return false;
         }
         final RegistroLogin other = (RegistroLogin) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.secLog, other.secLog)) {
             return false;
         }
         return true;
     }
-    
-        
+
+    @Override
+    public String toString() {
+        return "RegistroLogin{" + "secLog=" + secLog + '}';
+    }
+
+           
 }
