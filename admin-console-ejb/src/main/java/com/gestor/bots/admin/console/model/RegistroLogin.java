@@ -18,7 +18,10 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,25 +32,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "REGISTRO_LOGIN")
+public class RegistroLogin implements Serializable {
 
-
-public class RegistroLogin implements Serializable{
-    
-     @Id
+    @Id
     @Column(name = "SEC_LOG", nullable = false, length = 8)
-     private Integer secLog;
-     
-    
-    @Column(name = "USERNAME" , nullable = false , length = 50)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEC_LOGIN")
+    @SequenceGenerator(name = "SEC_LOGIN", sequenceName = "SEC_REGISTRO_LOGIN", allocationSize = 1)
+    private Integer secLog;
+
+    @Column(name = "USERNAME", nullable = false, length = 50)
     private String username;
-    
-     @Column(name = "IP" , nullable = false , length = 16)
+
+    @Column(name = "IP", nullable = false, length = 16)
     private String ip;
-    
-   
-    @Temporal(TemporalType.DATE)
-    @Column(name = "FECHA" , nullable = false)
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "FECHA", nullable = false)
     private Date fecha;
+    @Column(name = "RESULTADO", nullable = false, length = 3)
+    private String resultado;
 
     public RegistroLogin() {
     }
@@ -88,6 +91,14 @@ public class RegistroLogin implements Serializable{
         this.fecha = fecha;
     }
 
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -118,5 +129,4 @@ public class RegistroLogin implements Serializable{
         return "RegistroLogin{" + "secLog=" + secLog + '}';
     }
 
-           
 }

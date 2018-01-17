@@ -5,9 +5,11 @@
  */
 package com.gestor.bots.admin.console.dao;
 
+import com.gestor.bots.admin.console.model.RegistroLogin;
 import com.persist.common.dao.DefaultGenericDAOImple;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+
 /**
  *
  * @author Gestor_1
@@ -15,7 +17,8 @@ import javax.ejb.Stateless;
 @LocalBean
 @Stateless
 public class RegistroLoginDAO extends DefaultGenericDAOImple<RegistroLogin, Integer> {
-    public RegistroLoginDAO(){
+
+    public RegistroLoginDAO() {
         super(RegistroLogin.class);
     }
 }

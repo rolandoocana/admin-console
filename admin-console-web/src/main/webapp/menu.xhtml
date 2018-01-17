@@ -8,9 +8,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
         <ui:composition template="/templates/plantilla.xhtml">
             <ui:define name="contenido">
-                <p:panel header="Menu Principal" >
-                    
-                </p:panel>
+                <h1>Menu Principal</h1>
+                <h3>Bienvenido: #{credencialesBean.user.nombre}</h3>
             </ui:define>
         </ui:composition>
 </html>
