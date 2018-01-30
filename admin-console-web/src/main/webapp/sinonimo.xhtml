@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+        <ui:composition template="/templates/plantilla.xhtml">
+            <ui:define name="contenido">
+                <p:panel header="Administracion Sinonimo" >
+                    <p:dataTable value="#{sinonimoBean.sinonimoList}" var="sinonimo"
+                                 rows="5" paginator="true" paginatorPosition="bottom" selectionMode="single"
+                                 selection="#{sinonimoBean.sinonimoSel}" rowKey="#{sinonimo.secuencia}" disabledSelection="#{sinonimoBean.enFormulario}">
+                        <p:ajax event="rowSelect" update="@form" />
+                        <p:ajax event="rowUnselect" update="@form" />
+                        <f:facet name="header">
+                            Listado de Sinonimos
+                        </f:facet>
+                        <p:column headerText="Secuencia" sortBy="#{sinonimo.secuencia}">
+                            #{sinonimo.secuencia}
+                        </p:column>
+                        <p:column headerText="Codigo Bot" sortBy="#{sinonimo.codigoBot}">
+                            #{sinonimo.codigoBot}
+                        </p:column>
+                        <p:column headerText="Terminos" >
+                            #{sinonimo.terminos}
+                        </p:column>
+                        <f:facet name="footer">
+                            Registros Totales: #{sinonimoBean.sinonimoList.size()}
+                        </f:facet>
+                    </p:dataTable>
+                    <p:spacer height="10px"/>
+                    <p:commandButton value="Nuevo" actionListener="#{sinonimoBean.nuevo()}" update="@form"/>
+                    <p:commandButton value="Modificar" actionListener="#{sinonimoBean.modificar()}" update="@form" disabled="#{sinonimoBean.sinonimoSel == null || sinonimoBean.enFormulario}"/>
+                    <p:commandButton value="Eliminar" disabled="#{sinonimoBean.sinonimoSel == null}"/>
+                    <p:commandButton value="Detalles" actionListener="#{sinonimoBean.consultar()}" update="@form" disabled="#{sinonimoBean.sinonimoSel == null || sinonimoBean.enFormulario}"/>
+                    <p:spacer height="10px"/>
+                    <p:panel header="#{sinonimoBean.tituloPanel}" rendered="#{sinonimoBean.enFormulario}">
+                        <p:panelGrid columns="3">
+                            <p:outputLabel for="codigo" value="Codigo" />
+                            <p:inputText id="codigo" value="#{sinonimoBean.sinonimo.codigo}" required="true" disabled="#{sinonimoBean.enModificar or sinonimoBean.enConsulta}"/>
+                            <p:message for="codigo" />
+                            <p:outputLabel for="nombre" value="Nombre" />
+                            <p:inputText id="nombre" value="#{sinonimoBean.sinonimo.nombre}" required="true" readonly ="#{sinonimoBean.enConsulta}" />
+                            <p:message for="nombre" />
+                        </p:panelGrid>
+                        <p:spacer height="5px"/>
+                        <p:commandButton value="Aceptar" actionListener="#{sinonimoBean.guardar()}" update="@form" rendered="#{not sinonimoBean.enConsulta}" />
+                        <p:commandButton value="Cancelar" actionListener="#{sinonimoBean.cancelar()}" update="@form" immediate="true"/>
+                    </p:panel>
+                    <p:messages globalOnly="true" showSummary="true" showDetail="true"  />
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+</html>

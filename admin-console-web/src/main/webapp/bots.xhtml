@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/plantilla.xhtml">
+        <ui:define name="contenido">
+            <p:panel header="Administracion de Bots" >
+                <p:panel id="busquedaPnl" header="Seleccion de Cliente">
+                    <p:panelGrid columns="4">
+                        <p:outputLabel for="filtro" value="Filtro:" />
+                        <p:selectOneMenu id="tipoFiltro" value="#{botBean.tipoFiltro}" >
+                            <p:ajax update="busquedaPnl" />
+                            <f:selectItem itemLabel="RUC" itemValue="RUC" />
+                         </p:selectOneMenu>
+                        <p:inputText id="filtro" value="#{botBean.filtro}" rendered="#{'RUC' eq botBean.tipoFiltro}" />
+                        <p:commandButton value="Buscar" actionListener="#{botBean.buscar()}" update="@form" />
+                    </p:panelGrid>
+                </p:panel>
+                <p:spacer height="10px" />
+                <p:dataTable value="#{botBean.botList}" var="bot"
+                             rows="5" paginator="true" paginatorPosition="bottom" selectionMode="single"
+                             emptyMessage="No hay registros para desplegar"
+                             selection="#{botBean.botSel}" rowKey="#{bot.codigo}" disabledSelection="#{botBean.enFormulario}">
+                    <p:ajax event="rowSelect" update="@form" />
+                    <p:ajax event="rowUnselect" update="@form" />
+                    <f:facet name="header">
+                        Listado de Bots
+                    </f:facet>
+                    <p:column headerText="RUC Cliente" sortBy="#{bot.ruc}">
+                        #{bot.ruc}
+                    </p:column>
+                    <p:column headerText="Codigo" sortBy="#{bot.codigo}">
+                        #{bot.codigo}
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#{bot.nombre}">
+                        #{bot.nombre}
+                    </p:column>
+                                       <f:facet name="footer">
+                        Registros Totales: #{botBean.botList.size()}
+                    </f:facet>
+                </p:dataTable>
+                <p:spacer height="10px"/>
+                <p:commandButton value="Nuevo" actionListener="#{botBean.nuevo()}" update="@form" disabled="#{botBean.enFormulario}"/>
+                <p:commandButton value="Modificar" actionListener="#{botBean.modificar()}" update="@form" disabled="#{botBean.botSel == null || botBean.enFormulario}"/>
+                <p:commandButton value="Eliminar" disabled="#{botBean.botSel == null}"/>
+                <p:commandButton value="Detalles" actionListener="#{botBean.consultar()}" update="@form" disabled="#{botBean.botSel == null || botBean.enFormulario}"/>
+                <p:spacer height="10px"/>
+                <p:panel header="Bots" rendered="#{botBean.enFormulario}">
+                    <p:panelGrid columns="3">
+                         <p:outputLabel for="ruc" value="RUC Cliente" />
+                         <p:inputText id="ruc" value="#{botBean.bot.ruc}" required="true" 
+                                     disabled="#{botBean.enModificar or botBean.enConsulta}">
+                        </p:inputText>
+                         <p:message for="ruc" />
+                        <p:outputLabel for="codigo" value="Codigo Bot" />
+                        <p:inputText id="codigo" value="#{botBean.bot.codigo}" required="true" 
+                                     disabled="#{botBean.enModificar or botBean.enConsulta}">
+                        </p:inputText>
+                        <p:message for="codigo" />
+                        <p:outputLabel for="nombre" value="Nombre" />
+                        <p:inputText id="nombre" value="#{botBean.bot.nombre}" required="true" readonly ="#{botBean.enConsulta}" />
+                        <p:message for="nombre" />
+                        <p:outputLabel for="avatar" value="Avatar" />
+                        <p:inputText id="avatar" value="#{botBean.bot.avatar}" required="true" readonly ="#{botBean.enConsulta}" />
+                        <p:message for="avatar" />
+                        <p:outputLabel for="descripcion" value="Descripcion" />
+                        <p:inputText id="descripcion" value="#{botBean.bot.descripcion}" required="true" readonly ="#{botBean.enConsulta}" />
+                        <p:message for="descripcion" />                                 
+                        <p:outputLabel for="tipo" value="Tipo Bot" />
+                        <p:selectOneListbox value="#{botBean.bot.tipo}" id="tipo">
+                            <f:selectItem itemValue="SUS" itemLabel="Suscripcion" />
+                            <f:selectItem itemValue="PYR" itemLabel="Pregunta/Respuesta" />
+                        </p:selectOneListbox>
+                        <p:message for="tipo" />
+                    </p:panelGrid>
+                    <p:spacer height="5px"/>
+                    <p:commandButton value="Aceptar" actionListener="#{botBean.guardar()}" update="@form" rendered="#{not botBean.enConsulta}" />
+                    <p:commandButton value="Cancelar" actionListener="#{botBean.cancelar()}" update="@form" immediate="true"/>
+                </p:panel>
+                <p:messages globalOnly="true" showSummary="true" showDetail="true"  />
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
