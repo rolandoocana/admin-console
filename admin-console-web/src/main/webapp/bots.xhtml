@@ -68,7 +68,7 @@
                         <p:inputText id="avatar" value="#{botBean.bot.avatar}" required="true" readonly ="#{botBean.enConsulta}" />
                         <p:message for="avatar" />
                         <p:outputLabel for="descripcion" value="Descripcion" />
-                        <p:inputText id="descripcion" value="#{botBean.bot.descripcion}" required="true" readonly ="#{botBean.enConsulta}" />
+                        <p:inputTextarea rows="6" cols="33" id="descripcion" value="#{botBean.bot.descripcion}" required="true" readonly ="#{botBean.enConsulta}" />
                         <p:message for="descripcion" />                                 
                         <p:outputLabel for="tipo" value="Tipo Bot" />
                         <p:selectOneListbox value="#{botBean.bot.tipo}" id="tipo">

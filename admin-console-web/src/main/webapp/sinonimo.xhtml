@@ -33,17 +33,20 @@
                     <p:spacer height="10px"/>
                     <p:commandButton value="Nuevo" actionListener="#{sinonimoBean.nuevo()}" update="@form"/>
                     <p:commandButton value="Modificar" actionListener="#{sinonimoBean.modificar()}" update="@form" disabled="#{sinonimoBean.sinonimoSel == null || sinonimoBean.enFormulario}"/>
-                    <p:commandButton value="Eliminar" disabled="#{sinonimoBean.sinonimoSel == null}"/>
+                    <p:commandButton value="Eliminar"  update="@form"  disabled="#{sinonimoBean.sinonimoSel == null}"/>
                     <p:commandButton value="Detalles" actionListener="#{sinonimoBean.consultar()}" update="@form" disabled="#{sinonimoBean.sinonimoSel == null || sinonimoBean.enFormulario}"/>
                     <p:spacer height="10px"/>
                     <p:panel header="#{sinonimoBean.tituloPanel}" rendered="#{sinonimoBean.enFormulario}">
                         <p:panelGrid columns="3">
-                            <p:outputLabel for="codigo" value="Codigo" />
-                            <p:inputText id="codigo" value="#{sinonimoBean.sinonimo.codigo}" required="true" disabled="#{sinonimoBean.enModificar or sinonimoBean.enConsulta}"/>
-                            <p:message for="codigo" />
-                            <p:outputLabel for="nombre" value="Nombre" />
-                            <p:inputText id="nombre" value="#{sinonimoBean.sinonimo.nombre}" required="true" readonly ="#{sinonimoBean.enConsulta}" />
-                            <p:message for="nombre" />
+                            <p:outputLabel for="secuencia" value="Secuencia" />
+                            <p:inputText id="secuencia" value="#{sinonimoBean.sinonimo.secuencia}" required="true" disabled="#{sinonimoBean.enModificar or sinonimoBean.enConsulta}"/>
+                            <p:message for="secuencia" />
+                            <p:outputLabel for="codigoBot" value="Codigo Bot" />
+                            <p:inputText id="codigoBot" value="#{sinonimoBean.sinonimo.codigoBot}" required="true" disabled="#{sinonimoBean.enModificar or sinonimoBean.enConsulta}"/>
+                            <p:message for="codigoBot" />
+                            <p:outputLabel for="terminos" value="Terminos" />
+                            <p:inputTextarea rows="6" cols="33" id="terminos" value="#{sinonimoBean.sinonimo.terminos}" required="true" readonly ="#{sinonimoBean.enConsulta}" />
+                            <p:message for="terminos" />
                         </p:panelGrid>
                         <p:spacer height="5px"/>
                         <p:commandButton value="Aceptar" actionListener="#{sinonimoBean.guardar()}" update="@form" rendered="#{not sinonimoBean.enConsulta}" />

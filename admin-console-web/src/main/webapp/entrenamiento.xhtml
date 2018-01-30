@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+        <ui:composition template="/templates/plantilla.xhtml">
+            <ui:define name="contenido">
+                <p:panel header="Administracion Entrenamiento Regla" >
+                    <p:dataTable value="#{entrenamientoReglaBean.entrenamientoReglaList}" var="entrenamientoRegla"
+                                 rows="5" paginator="true" paginatorPosition="bottom" selectionMode="single"
+                                 selection="#{entrenamientoReglaBean.entrenamientoReglaSel}" rowKey="#{entrenamientoRegla.pk}" disabledSelection="#{entrenamientoReglaBean.enFormulario}">
+                        <p:ajax event="rowSelect" update="@form" />
+                        <p:ajax event="rowUnselect" update="@form" />
+                        <f:facet name="header">
+                            Listado de Entrenamiento Reglas
+                        </f:facet>
+                        <p:column headerText="Secuencia" sortBy="#{entrenamientoRegla.pk.secuenciaEntrenamiento}">
+                            #{entrenamientoRegla.pk.secuenciaEntrenamiento}
+                        </p:column>
+                        <p:column headerText="Codigo Regla" sortBy="#{entrenamientoRegla.pk.codigoRegla}">
+                            #{entrenamientoRegla.pk.codigoRegla}
+                        </p:column>
+                        <p:column headerText="Fecha inicio" >
+                            #{entrenamientoRegla.fechaInicio}
+                        </p:column>
+                        <p:column headerText="Fecha Fin" >
+                            #{entrenamientoRegla.fechaFin}
+                        </p:column>
+                        <p:column headerText="Estado" >
+                            #{entrenamientoRegla.estado}
+                        </p:column>
+                        <f:facet name="footer">
+                            Registros Totales: #{entrenamientoReglaBean.entrenamientoReglaList.size()}
+                        </f:facet>
+                    </p:dataTable>
+                    <p:spacer height="10px"/>
+                    <p:commandButton value="Nuevo" actionListener="#{entrenamientoReglaBean.nuevo()}" update="@form"/>
+                    <p:commandButton value="Modificar" actionListener="#{entrenamientoReglaBean.modificar()}" update="@form" disabled="#{entrenamientoReglaBean.entrenamientoReglaSel == null || entrenamientoReglaBean.enFormulario}"/>
+                    <p:commandButton value="Eliminar" disabled="#{entrenamientoReglaBean.entrenamientoReglaSel == null}"/>
+                    <p:commandButton value="Detalles" actionListener="#{entrenamientoReglaBean.consultar()}" update="@form" disabled="#{entrenamientoReglaBean.entrenamientoReglaSel == null || entrenamientoReglaBean.enFormulario}"/>
+                    <p:spacer height="10px"/>
+                    <p:panel header="#{entrenamientoReglaBean.tituloPanel}" rendered="#{entrenamientoReglaBean.enFormulario}">
+                        <p:panelGrid columns="3">
+                            <p:outputLabel for="codigoRegla" value="Codigo Regla" />
+                            <p:inputText id="codigoRegla" value="#{entrenamientoReglaBean.entrenamientoRegla.pk.codigoRegla}" required="true" disabled="#{entrenamientoReglaBean.enModificar or entrenamientoReglaBean.enConsulta}"/>
+                            <p:message for="codigoRegla" />
+                            <p:outputLabel for="secuencia" value="Secuencia" />
+                            <p:inputText id="secuencia" value="#{entrenamientoReglaBean.entrenamientoRegla.pk.secuenciaEntrenamiento}" required="true" disabled="#{entrenamientoReglaBean.enModificar or entrenamientoReglaBean.enConsulta}"/>
+                            <p:message for="secuencia" />
+                            <p:outputLabel for="fechaInicio" value="Fecha Inicio" />
+                            <p:calendar id="fechaInicio" value="#{entrenamientoReglaBean.entrenamientoRegla.fechaInicio}" required="true" readonly ="#{entrenamientoReglaBean.enConsulta}" />
+                            <p:message for="fechaInicio" />
+                            <p:outputLabel for="fechaFin" value="Fecha Fin" />
+                            <p:calendar id="fechaFin" value="#{entrenamientoReglaBean.entrenamientoRegla.fechaFin}" required="true" readonly ="#{entrenamientoReglaBean.enConsulta}" />
+                            <p:message for="fechaFin" />
+                            <p:outputLabel for="lineasEntrenamiento" value="Lineas Entrenamiento" />
+                            <p:inputText id="lineasEntrenamiento" value="#{entrenamientoReglaBean.entrenamientoRegla.lineasEntrenamiento}" required="true" disabled="#{entrenamientoReglaBean.enModificar or entrenamientoReglaBean.enConsulta}"/>
+                            <p:message for="lineasEntrenamiento" />
+                        </p:panelGrid>
+                        <p:spacer height="5px"/>
+                        <p:commandButton value="Aceptar" actionListener="#{entrenamientoReglaBean.guardar()}" update="@form" rendered="#{not entrenamientoReglaBean.enConsulta}" />
+                        <p:commandButton value="Cancelar" actionListener="#{entrenamientoReglaBean.cancelar()}" update="@form" immediate="true"/>
+                    </p:panel>
+                    <p:messages globalOnly="true" showSummary="true" showDetail="true"  />
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+</html>

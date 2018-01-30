@@ -13,6 +13,7 @@
  */
 package com.gestor.bots.admin.console.model;
  
+import com.gestor.bots.admin.console.enums.EstadoEntrenamientoReglaEnum;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -225,5 +226,9 @@ public class EntrenamientoRegla implements Serializable {
     public String toString() { 
         return "${CLASS_PK_TS}[pk=" + pk + "]"; 
     }     
+
+    public void setEstado(EstadoEntrenamientoReglaEnum estadoEntrenamientoReglaEnum) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 } 

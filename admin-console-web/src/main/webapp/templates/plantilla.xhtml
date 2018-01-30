@@ -14,34 +14,37 @@
     </h:head>
     <h:body> 
         <div id="page">
-            
+
             <div class="header">
                 <img src="#{facesContext.externalContext.requestContextPath}/images/banner.png" height="100%" class="img-responsive" />
             </div>
             <h:form>
-            <p:menubar >
-                <p:submenu label="Catalogos" icon="fa-pagelines">
-                    <p:menuitem value="Redes Sociales" action="socialMedia" icon="fa-wechat"/>
-                </p:submenu>
-                <p:submenu label="Usuarios" icon="fa-users">
-                    <p:menuitem value="Usuarios" action="usuario" icon="fa-user"/>
-                </p:submenu>
-                <p:submenu label="Clientes" icon="fa-suitcase">
-                    <p:menuitem value="Clientes" action="cliente" icon="fa-user-plus"/>
-                </p:submenu>
-                <p:submenu label="Bots" icon="fa-android">
-                    <p:menuitem value="Bots" action="bots" icon="fa-cube"/>
-                    <p:menuitem value="Reglas" action="regla" icon="fa-cogs"/>
-                    <p:menuitem value="Sinonimo" action="sinonimo" icon="fa-cogs"/>
-                    <p:menuitem value="Corpus" action="corpus" icon="fa-cogs"/>
-                </p:submenu>
-                <f:facet name="options">
-                    <p:menuButton value="#{credencialesBean.user.nombre}" icon="fa-user-md">
-                        <p:menuitem value="Preferencias" url="#" icon="fa-cog"/>
-                        <p:menuitem value="Salir" url="/admin-console-web/index.xhtml" icon="fa-sign-out"/>
-                    </p:menuButton>
-                </f:facet>
-            </p:menubar>
+                <p:menubar >
+                    <p:submenu label="Catalogos" icon="fa-pagelines">
+                        <p:menuitem value="Redes Sociales" action="socialMedia" icon="fa-wechat"/>
+                    </p:submenu>
+                    <p:submenu label="Usuarios" icon="fa-users">
+                        <p:menuitem value="Usuarios" action="usuario" icon="fa-user"/>
+                    </p:submenu>
+                    <p:submenu label="Clientes" icon="fa-suitcase">
+                        <p:menuitem value="Clientes" action="cliente" icon="fa-user-plus"/>
+                    </p:submenu>
+                    <p:submenu label="Bots" icon="fa-android">
+                        <p:menuitem value="Bots" action="bots" icon="fa-cube"/>
+                        <p:submenu label="Reglas" icon="fa-android">
+                            <p:menuitem value="Regla" action="regla" icon="fa-cogs"/>                    
+                            <p:menuitem value="Corpus" action="corpus" icon="fa-cogs"/>
+                            <p:menuitem value="Entrenamiento Regla" action="entrenamiento" icon="fa-cogs"/>
+                        </p:submenu>
+                        <p:menuitem value="Sinonimo" action="sinonimo" icon="fa-cogs"/>
+                    </p:submenu>
+                    <f:facet name="options">
+                        <p:menuButton value="#{credencialesBean.user.nombre}" icon="fa-user-md">
+                            <p:menuitem value="Preferencias" url="#" icon="fa-cog"/>
+                            <p:menuitem value="Salir" url="/admin-console-web/index.xhtml" icon="fa-sign-out"/>
+                        </p:menuButton>
+                    </f:facet>
+                </p:menubar>
             </h:form>    
             <div id="content">
                 <h:form>

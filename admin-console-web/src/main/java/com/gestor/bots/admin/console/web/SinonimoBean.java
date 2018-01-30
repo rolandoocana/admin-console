@@ -80,7 +80,17 @@ public class SinonimoBean extends BaseBean implements Serializable {
         }
         
     }
-
+    
+    public void eliminar(){
+//        try {
+                this.sinonimoService.eliminar(sinonimo);
+                FacesUtil.addMessageInfo("Se elimino el sinonimo: " + this.sinonimo.getSecuencia());
+                super.cancelar();
+//            } catch (Exception e) {
+//                FacesUtil.addMessageError(null, "Ocurrio un error al eliminar el sinonimo: "+this.sinonimo);
+//            }
+    }
+            
     public List<Sinonimo> getSinonimoList() {
         return sinonimoList;
     }

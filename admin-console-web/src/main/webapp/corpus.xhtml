@@ -11,13 +11,13 @@
                 <p:panel header="Administracion Corpus" >
                     <p:dataTable value="#{corpusBean.corpusList}" var="corpus"
                                  rows="5" paginator="true" paginatorPosition="bottom" selectionMode="single"
-                                 selection="#{not empty row ? corpusBean.corpusSel: null}" rowKey="#{corpus.id}" disabledSelection="#{corpusBean.enFormulario}">
+                                 selection="#{corpusBean.corpusSel}" rowKey="#{corpus.id}" disabledSelection="#{corpusBean.enFormulario}">
                         <p:ajax event="rowSelect" update="@form" />
                         <p:ajax event="rowUnselect" update="@form" />
                         <f:facet name="header">
                             Listado de Corpuss
                         </f:facet>
-                        <p:column headerText="Codigo" sortBy="#{corpus.id}">
+                        <p:column headerText="ID" sortBy="#{corpus.id}">
                             #{corpus.id}
                         </p:column>
                         <p:column headerText="Codigo Regla" sortBy="#{corpus.codigoRegla}">
@@ -41,8 +41,11 @@
                             <p:outputLabel for="id" value="ID" />
                             <p:inputText id="id" value="#{corpusBean.corpus.id}" required="true" disabled="#{corpusBean.enModificar or corpusBean.enConsulta}"/>
                             <p:message for="id" />
+                            <p:outputLabel for="codigoRegla" value="Codigo Regla" />
+                            <p:inputText id="codigoBot" value="#{corpusBean.corpus.codigoRegla}" required="false" disabled="#{corpusBean.enModificar or corpusBean.enConsulta}"/>
+                            <p:message for="codigoRegla" />
                             <p:outputLabel for="texto" value="Texto" />
-                            <p:inputText id="nombre" value="#{corpusBean.corpus.texto}" required="true" readonly ="#{corpusBean.enConsulta}" />
+                            <p:inputTextarea rows="6" cols="33" id="texto" value="#{corpusBean.corpus.texto}" required="true" readonly ="#{corpusBean.enConsulta}" />
                             <p:message for="texto" />
                         </p:panelGrid>
                         <p:spacer height="5px"/>
